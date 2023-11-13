@@ -2,6 +2,17 @@
 
 This example connects two VPC using the VPC endpoint service
 
+## Prepare
+
+Generate an SSH Key
+
+```bash
+ssh-keygen -t rsa -b 4096 -m PEM -N '' -f id_rsa
+terraform init
+terraform plan
+terraform apply
+```
+
 ## Procedure
 
 - On Provider Side:

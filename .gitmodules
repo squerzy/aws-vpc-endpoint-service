@@ -1,3 +1,3 @@
 [submodule "terraform"]
-	path = terraform
+	path = modules
 	url = https://github.com/squerzy/terraform-modules.git

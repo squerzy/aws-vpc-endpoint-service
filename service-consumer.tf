@@ -1,5 +1,5 @@
 module "consumer_vpc" {
-  source         = "./terraform/modules/vpc"
+  source         = "./modules/vpc"
   vpc_cidr       = "10.1.0.0/16"
   subnet_1a_CIRD = "10.1.0.0/21"
   subnet_1b_CIRD = "10.1.8.0/21"
@@ -39,7 +39,7 @@ resource "aws_security_group" "consumer_sg" {
 }
 
 module "consumer_machine_1" {
-  source          = "./terraform/modules/web-instance"
+  source          = "./modules/web-instance"
   vpc_id          = module.consumer_vpc.vpc.id
   subnet_id       = module.consumer_vpc.subnet_1a.id
   env             = "consumer1"

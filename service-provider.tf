@@ -30,7 +30,7 @@ resource "aws_security_group" "provider_web" {
 }
 
 module "provider_vpc" {
-  source         = "./terraform/modules/vpc"
+  source         = "./modules/vpc"
   vpc_cidr       = "10.0.0.0/16"
   subnet_1a_CIRD = "10.0.0.0/21"
   subnet_1b_CIRD = "10.0.8.0/21"
@@ -39,7 +39,7 @@ module "provider_vpc" {
 }
 
 module "web1" {
-  source          = "./terraform/modules/web-instance"
+  source          = "./modules/web-instance"
   vpc_id          = module.provider_vpc.vpc.id
   subnet_id       = module.provider_vpc.subnet_1a.id
   env             = "provider-1"
@@ -48,7 +48,7 @@ module "web1" {
 }
 
 module "web2" {
-  source          = "./terraform/modules/web-instance"
+  source          = "./modules/web-instance"
   vpc_id          = module.provider_vpc.vpc.id
   subnet_id       = module.provider_vpc.subnet_1a.id
   env             = "provider-2"
@@ -58,7 +58,7 @@ module "web2" {
 
 
 module "nlb" {
-  source          = "./terraform/modules/nlb"
+  source          = "./modules/nlb"
   vpc_id          = module.provider_vpc.vpc.id
   security_groups = [aws_security_group.provider_web.id]
   subnet_ids      = [module.provider_vpc.subnet_1a.id, module.provider_vpc.subnet_1b.id, module.provider_vpc.subnet_1c.id]
